@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import logo from 'assets/logo.png';
-
+import {Link} from 'react-router-dom';
 
 const signup = () =>
 {
@@ -24,8 +24,8 @@ const signup = () =>
         </FormGroup>
         <Button variant="contained" sx={{mt:10}}>로그인</Button>
 
-        <ResetPwdLbl>비밀번호 재설정</ResetPwdLbl>
-    <SignUpLbl>회원가입</SignUpLbl>
+        <ResetPwdLbl><StyledLink to="./findpw">비밀번호 재설정</StyledLink></ResetPwdLbl>
+    <SignUpLbl><StyledLink to="./signup">회원가입</StyledLink></SignUpLbl>
     </Maindiv>
     
     <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
@@ -91,5 +91,13 @@ color: #1976D2;
 font-size: small;
 margin-top: -17px;
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 
 export default signup;

@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import styled from 'styled-components';
-
+import {Link} from 'react-router-dom';
 
 const signup = () =>
 {
@@ -20,7 +20,9 @@ const signup = () =>
         
         <Buttonwrap>
         <Button variant="contained" sx={{mt: 10, mr:10}}>설정 완료</Button>
+        <StyledLink to="./dashboard">
         <Button variant="outlined" sx={{mt: 10, ml:10}}> 취소</Button>
+        </StyledLink>
         </Buttonwrap>
     </Maindiv>
     
@@ -80,4 +82,13 @@ float: center;
 text-align: center;
 
 `
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 export default signup;

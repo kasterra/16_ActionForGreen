@@ -32,10 +32,10 @@ const signup = () =>
         <TextField variant="outlined" label="IoT Serial" sx={{mt:2, mb:2}} />
         
         <Button variant="contained" onClick={() => {
-            if(signupAPI({"email":this.state.email, "password": this.state.password})===false)
+            if(signupAPI({"email":"IDabc@abc.com", "password":"adde(**&333"})===false)
             {
                 alert("회원가입에 성공하였습니다. 로그인해 주세요.");
-                location.href="./login";                
+                //location.href="./login";                
             }
             else{
                 alert("회원가입에 실패하였습니다.");

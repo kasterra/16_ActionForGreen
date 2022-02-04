@@ -23,13 +23,10 @@ let json = JSON.stringify({
 console.log(json);
 
 axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAr7uawUtRkM5YzG7w1W3nI96SYluf0gXQ', 
-    json,
-    
-     
-    
-)
+    json,{headers: {"Content-Type": 'application/json',},})
 .then(function(response) {
     console.log(response);
+    console.log("성공");
 })
 .catch(function(error) {
     console.log(error);
