@@ -2,15 +2,16 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import LockIcon from '@mui/icons-material/Lock';
-
+//import LockIcon from '@mui/icons-material/Lock';
+import LCIcon from 'assets/icon.svg';
 
 const signup = () =>
 {
     return( 
     <React.Fragment>
         <Icondiv>
-        <LockIcon align="center" />
+        
+        <img src={LCIcon} align="center" />
 </Icondiv>
         <Caption>회원 가입</Caption>
     <Maindiv>
