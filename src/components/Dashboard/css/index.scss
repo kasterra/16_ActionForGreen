@@ -3,26 +3,42 @@
 }
 .dashboard {
   background-color: rgba(226, 226, 226, 0.2);
-  width: 100vw;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .app-bar {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 80px;
+    height: 120px;
     background-color: #2196f3;
     color: #fff;
-    padding-left: 20px;
     .app-bar-title {
-      font-size: 25px;
+      padding-left: 50px;
+      font-size: 35px;
       margin-right: 50px;
+    }
+    button {
+      outline: none;
+      border: none;
+      margin-right: 30px;
+      background-color: inherit;
+      height: 100px;
+      color: #fff;
+      font-size: 28px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   .inner {
     display: flex;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
+    width: 85%;
     flex-grow: 1;
-    justify-content: space-between;
-    background-color: whitesmoke;
+    justify-content: center;
+    background-color: #f9f9f9;
     .setting-please {
       align-self: center;
       display: flex;
@@ -39,7 +55,7 @@
         flex-direction: column;
         width: 700px;
         height: 400px;
-        border-radius: 20px;
+        border-radius: 10px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         .cog-icon-container {
           width: 130px;
@@ -48,10 +64,10 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: #2196f3;
+          background-color: #42a5f5;
           margin-bottom: 50px;
           &:hover {
-            background: rgba(0, 0, 0, 0.5);
+            background: #2196f3;
           }
           img {
             width: 80px;
@@ -61,13 +77,30 @@
       }
     }
     .section {
-      padding-left: 20px;
-      width: 50%;
+      padding: 20px;
+      width: 90%;
+      .boxes {
+        display: flex;
+        justify-content: space-between;
+        &.column {
+          flex-direction: column;
+          justify-content: flex-start;
+          div:first-child {
+            margin-bottom: 100px;
+          }
+        }
+      }
+      .half {
+        width: 50%;
+      }
+      .half-less {
+        width: 46%;
+      }
       .huge {
         font-size: 55px;
       }
       .box {
-        border-radius: 20px;
+        border-radius: 10px;
       }
       .title {
         margin-top: 45px;
@@ -85,10 +118,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             background-color: #2196f3;
             margin-right: 45px;
+            img {
+              width: 60%;
+              height: 60%;
+            }
           }
         }
         .text-container {
@@ -109,12 +146,36 @@
           background-color: rgba(100, 181, 246, 0.6);
         }
       }
+      .with-border {
+        border: 1px solid #2c3e50;
+        justify-content: flex-start;
+        border-radius: 10px;
+        .column {
+          justify-content: center;
+          align-items: center;
+          width: 40%;
+        }
+      }
       .main {
         padding: 20px;
+        padding-left: 50px;
         background-color: rgba(255, 255, 255, 0.5);
         overflow: auto;
-        height: calc(100vh - 700px);
+        min-height: calc(100vh - 700px);
         margin-bottom: 35px;
+        &::-webkit-scrollbar {
+          width: 10px;
+          border-radius: 10px;
+          margin-right: -50px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #2f3542;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-track {
+          background-color: grey;
+          border-radius: 10px;
+        }
         .check-item {
           display: flex;
           align-items: center;
@@ -149,6 +210,7 @@
       }
       .bottom {
         display: flex;
+        width: 100%;
         padding-left: 20px;
         flex-direction: column;
         justify-content: center;
@@ -156,6 +218,21 @@
         font-size: 25px;
         height: 150px;
         background-color: rgba(220, 231, 117, 0.8);
+      }
+      .tree-box {
+        justify-content: flex-start;
+        align-items: flex-start;
+        .box-title {
+          font-size: 25pt;
+          font-weight: bold;
+        }
+        .trees {
+          align-self: center;
+          font-size: 25pt;
+        }
+        .tree-description {
+          align-self: center;
+        }
       }
     }
   }
@@ -174,12 +251,22 @@
     .usage-title {
       display: flex;
       justify-content: center;
-      font-size: 34px;
+      font-size: 30px;
       margin-right: 65px;
       width: 200px;
     }
     .usage-detail {
-      font-size: 24px;
+      font-size: 21px;
+    }
+  }
+  .alert-log {
+    margin-bottom: 10px;
+    .date {
+      font-size: 25pt;
+      margin-right: 10px;
+    }
+    .content {
+      font-size: 20pt;
     }
   }
 }
