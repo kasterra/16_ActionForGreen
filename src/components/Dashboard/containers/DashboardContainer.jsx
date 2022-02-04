@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Dashboard from "../Dashboard";
 
 const DashboardContainer = () => {
+  const history = useHistory();
   const [serialList, setSerialList] = useState([""]);
   const editSerial = (idx, serial) =>
     setSerialList(prev => [
@@ -23,6 +25,11 @@ const DashboardContainer = () => {
   const handleSerialSubmit = () => {
     console.log(serialList);
   };
+  useEffect(() => {
+    if (!window.sessionStorage.getItem("idToken")) {
+      history.push("/");
+    }
+  });
   return (
     <Dashboard
       yourCarbon={100}

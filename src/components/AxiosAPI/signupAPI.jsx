@@ -1,5 +1,4 @@
-
-import axios from 'axios';
+import axios from "axios";
 
 /*
 const json = JSON.stringify({
@@ -11,32 +10,38 @@ const json = JSON.stringify({
 */
 
 function signupAPI(props) {
-let email = props.email;
-let password = props.password;
+  let email = props.email;
+  let password = props.password;
+  let hasLoginFailed = true;
 
-let json = JSON.stringify({
-    "email": email,
-    "password": password,
-    "returnSecureToken": true,
-})
+  let json = JSON.stringify({
+    email: email,
+    password: password,
+    returnSecureToken: true
+  });
 
-console.log(json);
+  console.log(json);
 
-axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAr7uawUtRkM5YzG7w1W3nI96SYluf0gXQ', 
-    json,{headers: {"Content-Type": 'application/json',},})
-.then(function(response) {
-    console.log(response);
-    console.log("성공");
-    return false;
-})
-.catch(function(error) {
-    console.log(error);
-    return true;
-})
+  axios
+    .post(
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAr7uawUtRkM5YzG7w1W3nI96SYluf0gXQ",
+      json,
+      { headers: { "Content-Type": "application/json" } }
+    )
+    .then(function (response) {
+      console.log(response);
+      if (response.status === 200) {
+        window.alert("성공");
+        hasLoginFailed = false;
+        return;
+      } else window.alert("fail");
+    })
+    .catch(function (error) {
+      console.log(error);
+      return true;
+    });
 
-
-
-return false;
+  return hasLoginFailed;
 }
 
 export default signupAPI;

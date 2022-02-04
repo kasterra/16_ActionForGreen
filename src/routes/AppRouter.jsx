@@ -1,11 +1,9 @@
 import React from "react";
-//import HomeContainer from "components/Home/containers/HomeContainer";
 import signup from "components/screen/signup";
 import findpw from "components/screen/findpw";
-import resetpw from "components/screen/resetpw"
-import settings from "components/screen/settings"
-import login from "components/screen/login"
-import HomeContainer from "components/Home/containers/HomeContainer";
+import resetpw from "components/screen/resetpw";
+import settings from "components/screen/settings";
+import login from "components/screen/login";
 import DashboardContainer from "components/Dashboard/containers/DashboardContainer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 

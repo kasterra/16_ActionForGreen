@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import plus from "assets/add.svg";
 import minus from "assets/minus.svg";
 import update from "assets/update.svg";
@@ -29,6 +30,7 @@ const Dashboard = ({
   editSerial,
   handleSerialSubmit
 }) => {
+  const history = useHistory();
   const [currentMenu, setCurrentMenu] = useState(0);
   const [isSerialDialogOpen, setIsSerialDialogOpen] = useState(false);
   const repeatTree = num => {
@@ -49,6 +51,14 @@ const Dashboard = ({
           <button onClick={() => setCurrentMenu(0)}>사용량 보기</button>
           <button onClick={() => setCurrentMenu(1)}>알림 설정</button>
           <button onClick={openDialog}>IoT 시리얼 추가</button>
+          <button
+            onClick={() => {
+              window.sessionStorage.removeItem("tokenId");
+              history.push("/");
+            }}
+          >
+            로그아웃
+          </button>
         </div>
       </div>
       <Dialog
