@@ -23,9 +23,13 @@
 
 ## Usage
 
+Front-end(Client Program)
 ```sh
-yarn start: FE
+yarn start
 ```
+> - 프로젝트의 최상위 경로에서 실행합니다.
+
+Back-end(Server, Firebase)
 
 ## Author
 
