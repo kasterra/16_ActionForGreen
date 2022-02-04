@@ -5,6 +5,7 @@ import styled from 'styled-components';
 //import LockIcon from '@mui/icons-material/Lock';
 import LCIcon from 'assets/icon.svg';
 import signupAPI from 'components/AxiosAPI/signupAPI';
+import { Link } from 'react-router-dom';
 //import {useState} from 'react';
 
 //import signupAPI from 'components/AxiosAPI/signupAPI';
@@ -50,7 +51,7 @@ const signup = () => {
 
             </Maindiv>
 
-            <Ldiv>이미 계정이 있으신가요? 로그인하러 가기</Ldiv>
+            <Ldiv><StyledLink to="./login">이미 계정이 있으신가요? 로그인하러 가기</StyledLink></Ldiv>
             <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
         </React.Fragment>
     );
@@ -113,6 +114,13 @@ justify-content: center;
 font-size:small;
 color: rgba(0,0,0,0.54);
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #1976D2;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 
 export default signup;

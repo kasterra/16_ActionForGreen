@@ -112,7 +112,7 @@ margin-top: -17px;
 `
 const StyledLink = styled(Link)`
     text-decoration: none;
-
+    color: #1976D2;
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
