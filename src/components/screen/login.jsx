@@ -7,7 +7,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import logo from 'assets/logo.png';
 import {Link} from 'react-router-dom';
-
+import loginAPI from 'components/AxiosAPI/loginAPI';
 const signup = () =>
 {
     return( 
@@ -22,7 +22,17 @@ const signup = () =>
         <FormGroup>
             <FormControlLabel control={<Checkbox />} label="ID 저장하기" />
         </FormGroup>
-        <Button variant="contained" sx={{mt:10}}>로그인</Button>
+        <Button variant="contained" sx={{mt:10}} onClick={()=> {
+            if(loginAPI({"email":"IDabd@abc.com", "password": "adde(**&333"})===false)
+            {
+                alert("로그인");
+            }
+            else
+            {
+                alert("실패");
+            }
+            
+        }}>로그인</Button>
 
         <ResetPwdLbl><StyledLink to="./findpw">비밀번호 재설정</StyledLink></ResetPwdLbl>
     <SignUpLbl><StyledLink to="./signup">회원가입</StyledLink></SignUpLbl>

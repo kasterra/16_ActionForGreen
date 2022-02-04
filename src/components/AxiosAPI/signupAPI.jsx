@@ -27,6 +27,7 @@ axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSy
 .then(function(response) {
     console.log(response);
     console.log("성공");
+    return false;
 })
 .catch(function(error) {
     console.log(error);
