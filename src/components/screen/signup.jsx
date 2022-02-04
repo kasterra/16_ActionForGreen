@@ -17,10 +17,10 @@ const handelChange =  (event) => {
 }
 */
 const signup = () => {
-    const [id, setId] = useState("");
+
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [iotserial, setIotSerial] = useState("");
+
     return (
         <React.Fragment>
             <Icondiv>
@@ -29,11 +29,12 @@ const signup = () => {
             </Icondiv>
             <Caption>회원 가입</Caption>
             <Maindiv>
-                <TextField variant="outlined" label="ID" sx={{ mt: 2, mb: 2 }} value={id} onChange={e => { const { value } = e.target; setId(value) }} />
-                <TextField variant="outlined" label="비밀번호" type="password" sx={{ mt: 2, mb: 2 }} value={password} onChange={e => { const { value } = e.target; setPassword(value) }} />
+
                 <TextField variant="outlined" label="Email" type="email" sx={{ mt: 2, mb: 2 }} value={email} onChange={e => { const { value } = e.target; setEmail(value) }} />
-                <TextField variant="outlined" label="IoT Serial" sx={{ mt: 2, mb: 2 }} value={iotserial} onChange={e => { const { value } = e.target; setIotSerial(value) }} />
-                {console.log(id, password, email, iotserial)}
+                <TextField variant="outlined" label="비밀번호" type="password" sx={{ mt: 2, mb: 2 }} value={password} onChange={e => { const { value } = e.target; setPassword(value) }} />
+
+
+                {console.log(password, email)}
                 <Button variant="contained" onClick={() => {
                     if (signupAPI({ "email": email, "password": password }) === false) {
                         alert("회원가입에 성공하였습니다. 로그인해 주세요.");
