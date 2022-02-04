@@ -1,8 +1,11 @@
 
-import './App.css';
-
+import styled from 'styled-components'
 import React from 'react'
-import styled from 'styled-components';
+
+function co2emis() {
+    return <CO2Rect></CO2Rect>
+}
+
 const CO2Rect = styled.button`
 width: 600px;
 height: 180px;
@@ -11,11 +14,4 @@ border-radius: 15px;
 box-shadow: 0px 4px 4px #00000040;
 
 `
-
-
-function App() {
-  return  <CO2Rect />;
- 
-}
-
-export default App;
+export default co2emis;
