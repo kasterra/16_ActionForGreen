@@ -1,41 +1,42 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Switch from '@mui/material/Switch';
+//import Switch from '@mui/material/Switch';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
 
 
 
+//<TextField variant="outlined" label="시리얼 번호 입력" sx={{mt: 2, mb:2}}/>
+//<MailOn>메일 알림 켜기<Switch /></MailOn>
 
-const signup = () =>
-{
-    return( 
-    <React.Fragment>
-       
-    <Maindiv>
-        <TextField variant="outlined" label="시리얼 번호 입력" sx={{mt: 2, mb:2}}/>
-        <TextField variant="outlined" label="비밀번호 입력" type="password" sx={{mt:2, mb:2}}/>
-        <TextField variant="outlined" label="비밀번호 확인" type="password" sx={{mt:2, mb:2}}/>
-        <TextField variant="outlined" label="이메일 입력" type="email" sx={{mt:2, mb:2}}/>
-        
-        <MailOn>메일 알림 켜기<Switch /></MailOn>
-        
-        <Buttonwrap>
-        <Button variant="contained" sx={{mt: 10, mr:10}}>설정 완료</Button>
-        <StyledLink to="./dashboard">
-        <Button variant="outlined" sx={{mt: 10, ml:10}}> 취소</Button>
-        </StyledLink>
-        </Buttonwrap>
-       
-    </Maindiv>
-    
-    
-    <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
-    </React.Fragment>
+const signup = () => {
+    return (
+        <React.Fragment>
+
+            <Maindiv>
+
+                <TextField variant="outlined" label="비밀번호 입력" type="password" sx={{ mt: 2, mb: 2 }} />
+                <TextField variant="outlined" label="비밀번호 확인" type="password" sx={{ mt: 2, mb: 2 }} />
+                <TextField variant="outlined" label="이메일 입력" type="email" sx={{ mt: 2, mb: 2 }} />
+
+
+
+                <Buttonwrap>
+                    <Button variant="contained" sx={{ mt: 10, mr: 10 }}>설정 완료</Button>
+                    <StyledLink to="./dashboard">
+                        <Button variant="outlined" sx={{ mt: 10, ml: 10 }}> 취소</Button>
+                    </StyledLink>
+                </Buttonwrap>
+
+            </Maindiv>
+
+
+            <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
+        </React.Fragment>
     );
 }
 
@@ -75,7 +76,7 @@ justify-content: center;
 font-size:small;
 color: rgba(0,0,0,0.54);
 `
-
+/*
 const MailOn = styled.div`
 background-color: #F7E600;
 border-radius: 4px;
@@ -85,7 +86,7 @@ padding: 7px;
 box-shadow: 3px 3px 3px grey;
 font-family: 'Roboto';
 `
-
+*/
 const Buttonwrap = styled.div`
 float: center;
 text-align: center;
