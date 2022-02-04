@@ -1,5 +1,5 @@
 import React from "react";
-import HomeContainer from "components/Home/containers/HomeContainer";
+//import HomeContainer from "components/Home/containers/HomeContainer";
 import signup from "components/screen/signup";
 import findpw from "components/screen/findpw";
 import resetpw from "components/screen/resetpw"
@@ -11,7 +11,7 @@ const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={HomeContainer} />
+        <Route path="/" exact component={login} />
       </Switch>
       <Switch>
         <Route path="/signup" exact component={signup} />

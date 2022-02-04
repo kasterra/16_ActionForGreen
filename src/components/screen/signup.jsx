@@ -4,7 +4,18 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 //import LockIcon from '@mui/icons-material/Lock';
 import LCIcon from 'assets/icon.svg';
+import signupAPI from 'components/AxiosAPI/signupAPI';
+//import {useState} from 'react';
 
+//import signupAPI from 'components/AxiosAPI/signupAPI';
+
+//const [values, setValues] = useState({id: "", password: "", email: "", iotserial: ""});
+/*
+const handelChange =  (event) => {
+    const { name, value} = event.target;
+    setValues({...values, [name]:value});
+}
+*/
 const signup = () =>
 {
     return( 
@@ -15,11 +26,23 @@ const signup = () =>
 </Icondiv>
         <Caption>회원 가입</Caption>
     <Maindiv>
-        <TextField variant="outlined" label="ID" sx={{mt: 2, mb:2}}/>
-        <TextField variant="outlined" label="비밀번호" type="password" sx={{mt:2, mb:2}}/>
+        <TextField variant="outlined" label="ID" sx={{mt: 2, mb:2}} />
+        <TextField variant="outlined" label="비밀번호" type="password" sx={{mt:2, mb:2}} />
         <TextField variant="outlined" label="Email" type="email" sx={{mt:2, mb:2}}/>
-        <TextField variant="outlined" label="IoT Serial" sx={{mt:2, mb:2}}/>
-        <Button variant="contained" >회원 가입</Button>
+        <TextField variant="outlined" label="IoT Serial" sx={{mt:2, mb:2}} />
+        
+        <Button variant="contained" onClick={() => {
+            if(signupAPI({"email":this.state.email, "password": this.state.password})===false)
+            {
+                alert("회원가입에 성공하였습니다. 로그인해 주세요.");
+                location.href="./login";                
+            }
+            else{
+                alert("회원가입에 실패하였습니다.");
+                
+            }
+            
+            }} >회원 가입</Button>
 
         
     </Maindiv>
