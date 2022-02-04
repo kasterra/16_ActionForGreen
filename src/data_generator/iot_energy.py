@@ -8,45 +8,45 @@ from ast import literal_eval
 import requests
 self_adr=0
 data_range = [1, 2]  # 보낼 수 있는 data 의 최솟값, 최댓값-1 이다.
+transfer_con=0
+data_list=[]
+carbon_list=[]
 
 
-class SendData(threading.Thread):
-    def __init__(self, sec):
-        super().__init__()
-        self.sec = sec  # thread 이름 지정
-
-    def run(self):
-        time.sleep(self.sec)
-        send()
-
-
-def send():
-    print("dd")
-    data = int(random.random() * (data_range[1] - data_range[0]) + data_range[0])
-    send_api({"content": data, "serial-num": self_adr})
-    thread_send = SendData(2)
-    thread_send.start()
-
-
-def send_api(body):
-    API_HOST = "http://127.0.0.1:5000/"
-    url = API_HOST
+def send_api(method, body):
+    url = "https://us-central1-hack-9d261.cloudfunctions.net/user/iotInfo"
     body = body
     try:
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Accept': '*/*'}
-        requests.post(url, headers=headers, data=json.dumps(body, ensure_ascii=False, indent="\t"))
+        if method=='put':
+            requests.put(url, headers=headers, data=json.dumps(body, ensure_ascii=False, indent="\t"))
+        else:
+            requests.post(url, headers=headers, data=json.dumps(body, ensure_ascii=False, indent="\t"))
     except Exception as ex:
         print(ex)
 
 
-def iot_energy(self_adr_r, range1, range2):
-    global self_adr
+def iot_energy(self_adr_r, range1, range2, transfer_con_r):
+    global self_adr, transfer_con
+    transfer_con=transfer_con_r
     self_adr=self_adr_r
     data_range[0] = range1
     data_range[1] = range2
-    thread_send = SendData(2)
-    thread_send.start()
+
+    for i in range(180):
+        data = int(random.random() * (data_range[1] - data_range[0]) + data_range[0])
+        data_list.append(data)
+        carbon_list.append(int(data * transfer_con))
+    time.sleep(2)
+    send_api("post", {"carbon": str(carbon_list), "data": str(data_list), "number": str(self_adr)})
+
+    while True:
+        time.sleep(5)
+        data = int(random.random() * (data_range[1] - data_range[0]) + data_range[0])
+        print(send_api("put", {"carbon": str(int(data * transfer_con)), "data": str(data), "number": str(self_adr)}))
+    # thread_send = SendData(2)
+    # thread_send.start()
 
 
 if __name__ == "__main__":
-    iot_energy(3, 1,2)
+    iot_energy(3, 1, 2, 1)
