@@ -33,7 +33,9 @@ ActionForGreen은 네 명으로 구성된 팀으로 기후변화 대응을 위�
 한강민: 프론트엔드 및 디자인
 강보권: 서버, 백엔드 및 API 관리
 
-
+## 사용 기술
+Front-end(FE): React
+Back-end(BE): Firebase
 ## Show your support
 
 Give a ⭐️ if this project helped you!
