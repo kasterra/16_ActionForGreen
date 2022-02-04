@@ -9,7 +9,7 @@ const Footer = () => {
         <img src={logo} alt="Logo img" />
         <div className="text">
           <h1>Ⓒ GDSC Hackathon 16 Team</h1>
-          <h2>Actions for green</h2>
+          <h2>Action for green</h2>
         </div>
       </div>
     </>

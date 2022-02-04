@@ -4,6 +4,7 @@ import car from "assets/car.svg";
 import data from "assets/data.svg";
 import hotTub from "assets/hot-tub.svg";
 import powerPlug from "assets/power-plug.svg";
+import water from "assets/water.svg";
 
 // eslint-disable-next-line react/prop-types
 const UsageData = ({ kindOfUsage, usedAmount, carbonEmit }) => {
@@ -17,6 +18,8 @@ const UsageData = ({ kindOfUsage, usedAmount, carbonEmit }) => {
         return hotTub;
       case "elect":
         return powerPlug;
+      case "water":
+        return water;
       default:
         break;
     }
@@ -31,6 +34,8 @@ const UsageData = ({ kindOfUsage, usedAmount, carbonEmit }) => {
         return "난방 사용량";
       case "elect":
         return "전력 사용량";
+      case "water":
+        return "수도 사용량";
       default:
         break;
     }
@@ -49,6 +54,8 @@ const UsageData = ({ kindOfUsage, usedAmount, carbonEmit }) => {
         }${usedAmount % 60}분`;
       case "elect":
         return usedAmount + " kw";
+      case "water":
+        return usedAmount + " L";
       default:
         break;
     }

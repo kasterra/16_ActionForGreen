@@ -13,6 +13,13 @@ import Footer from "components/Footer/Footer";
 // eslint-disable-next-line react/prop-types
 const Dashboard = ({ yourCarbon, averageCarbon }) => {
   const [currentMenu, setCurrentMenu] = useState(0);
+  const repeatTree = num => {
+    let trees = "";
+    for (let i = 0; i < num; ++i) {
+      trees += "🌲";
+    }
+    return trees;
+  };
   return (
     <div className="dashboard">
       <div className="app-bar">
@@ -82,7 +89,7 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                       carbonEmit={120}
                     />
                     <UsageData
-                      kindOfUsage="data"
+                      kindOfUsage="water"
                       usedAmount={90}
                       carbonEmit={120}
                     />
@@ -115,18 +122,29 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                       </span>
                       {averageCarbon > yourCarbon ? (
                         <span>
-                          나무 N그루를 더 심으신 효과를 내셨습니다. 👍
+                          소나무 {((averageCarbon - yourCarbon) / 10000) * 71}
+                          그루를 더 심으신 효과를 내셨습니다. 👍
                         </span>
                       ) : (
-                        <span>나무 N그루가 더 필요하겠네요 ㅠㅠ 😥</span>
+                        <span>
+                          소나무 {((yourCarbon - averageCarbon) / 10000) * 71}
+                          그루가 더 필요하겠네요 ㅠㅠ 😥
+                        </span>
                       )}
                     </div>
                     <div className="box tree-box bottom">
                       <span className="box-title">내가 심은 나무!</span>
                       {averageCarbon > yourCarbon ? (
                         <>
-                          <div className="trees">🌲🌲🌲🌲🌲🌲🌲</div>
-                          <span className="tree-description">나무 N그루</span>
+                          <div className="trees">
+                            {repeatTree(
+                              ((averageCarbon - yourCarbon) / 10000) * 71
+                            )}
+                          </div>
+                          <span className="tree-description">
+                            소나무 {((averageCarbon - yourCarbon) / 10000) * 71}
+                            그루
+                          </span>
                         </>
                       ) : (
                         <span className="tree-description">
@@ -163,7 +181,7 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                   <div className="main box half-less">
                     <div className="check-item">
                       <Checkbox size="large" />
-                      <span>평균 1인가구 탄소배출량 50% 초과시 알림</span>
+                      <span>매일 7시에 전날 탄소배출량 알림 받기</span>
                     </div>
                     <div className="check-item">
                       <Checkbox size="large" />
@@ -191,6 +209,7 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                     <AlertLog date="2021-01-01" content="목표량 50% 초과" />
                   </div>
                 </div>
+                <Footer />
               </div>
             )}
           </>
