@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+//import Checkbox from '@mui/material/Checkbox';
+//import FormGroup from '@mui/material/FormGroup';
+//import FormControlLabel from '@mui/material/FormControlLabel';
 import logo from 'assets/logo.png';
 import { Link } from 'react-router-dom';
 import loginAPI from 'components/AxiosAPI/loginAPI';
 
+/*
+<FormGroup>
+                    <FormControlLabel control={<Checkbox checked={idsavecheck} onChange={e => { const { value } = e.target; if (value === "on") { setIDSaveCheck("off") } else { setIDSaveCheck("on"); } }} />} label="ID 저장하기" />
+                </FormGroup>
+                */
 
 const login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [idsavecheck, setIDSaveCheck] = useState("");
+    //const [idsavecheck, setIDSaveCheck] = useState("");
     return (
         <React.Fragment>
 
@@ -23,13 +28,9 @@ const login = () => {
                 <TextField variant="outlined" label="ID" sx={{ mt: 2, mb: 2 }} value={email} onChange={e => { const { value } = e.target; setEmail(value) }} />
                 <TextField variant="outlined" label="비밀번호" type="password" sx={{ mt: 2, mb: 2 }} value={password} onChange={e => { const { value } = e.target; setPassword(value) }} />
 
-                <FormGroup>
-                    <FormControlLabel control={<Checkbox value={idsavecheck} onChange={e => { const { value } = e.target; setIDSaveCheck(value) }} />} label="ID 저장하기" />
-                </FormGroup>
+
                 <Button variant="contained" sx={{ mt: 10 }} onClick={() => {
-                    if (idsavecheck === true) {
-                        localStorage.setItem("savedID", email);
-                    }
+
                     if (loginAPI({ "email": email, "password": password }) === false) {
                         setTimeout(function () {
                             location.href = "./dashboard";
@@ -42,7 +43,7 @@ const login = () => {
                     }
 
                 }}>로그인</Button>
-                {console.log(idsavecheck)}
+
                 <ResetPwdLbl><StyledLink to="./findpw">비밀번호 재설정</StyledLink></ResetPwdLbl>
                 <SignUpLbl><StyledLink to="./signup">회원가입</StyledLink></SignUpLbl>
             </Maindiv>
