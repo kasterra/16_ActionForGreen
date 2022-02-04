@@ -18,6 +18,14 @@ function loginAPI(props) {
         .then(function (response) {
             console.log(response);
             console.log("로그인 성공");
+            window.sessionStorage.setItem("displayName", response.data.displayName);
+            window.sessionStorage.setItem("email", response.data.email);
+            window.sessionStorage.setItem("expiresIn", response.data.expiresIn);
+            window.sessionStorage.setItem("idToken", response.data.idToken);
+            window.sessionStorage.setItem("kind", response.data.kind);
+            window.sessionStorage.setItem("localId", response.data.localId);
+            window.sessionStorage.setItem("refreshToken", response.data.refreshToken);
+            window.sessionStorage.setItem("registered", response.data.registered);
             return false;
         })
         .catch(function (error) {

@@ -13,7 +13,7 @@ import loginAPI from 'components/AxiosAPI/loginAPI';
 const login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [idsavecheck, setIDSaveCheck] = useState("");
     return (
         <React.Fragment>
 
@@ -24,20 +24,25 @@ const login = () => {
                 <TextField variant="outlined" label="비밀번호" type="password" sx={{ mt: 2, mb: 2 }} value={password} onChange={e => { const { value } = e.target; setPassword(value) }} />
 
                 <FormGroup>
-                    <FormControlLabel control={<Checkbox />} label="ID 저장하기" />
+                    <FormControlLabel control={<Checkbox value={idsavecheck} onChange={e => { const { value } = e.target; setIDSaveCheck(value) }} />} label="ID 저장하기" />
                 </FormGroup>
                 <Button variant="contained" sx={{ mt: 10 }} onClick={() => {
-                    localStorage.setItem("savedID", "test");
-
+                    if (idsavecheck === true) {
+                        localStorage.setItem("savedID", email);
+                    }
                     if (loginAPI({ "email": email, "password": password }) === false) {
-                        alert("로그인");
+                        setTimeout(function () {
+                            location.href = "./dashboard";
+                        }, 2000);
+
+
                     }
                     else {
                         alert("실패");
                     }
 
                 }}>로그인</Button>
-
+                {console.log(idsavecheck)}
                 <ResetPwdLbl><StyledLink to="./findpw">비밀번호 재설정</StyledLink></ResetPwdLbl>
                 <SignUpLbl><StyledLink to="./signup">회원가입</StyledLink></SignUpLbl>
             </Maindiv>
