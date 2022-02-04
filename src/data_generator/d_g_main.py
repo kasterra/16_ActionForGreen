@@ -22,8 +22,8 @@ N, R = -1, 1  # 총 노드 개수, 루트 노드 번호.
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
-def make_root_node(self_adr, data_min, data_max):
-    iot_energy.iot_energy(self_adr, data_min,data_max)
+def make_root_node(self_adr, data_min, data_max, tt):
+    iot_energy.iot_energy(self_adr, data_min,data_max, tt)
 
 
 def main():
@@ -37,7 +37,7 @@ def main():
     iot_num=len(iot)
     pool = multiprocessing.Pool(processes=iot_num)
     for i in iot:
-        pool.apply_async(make_root_node, [i[0], i[2], i[3]])
+        pool.apply_async(make_root_node, [i[1], i[2], i[3], i[4]])
 
     pool.close()
     pool.join()
