@@ -136,48 +136,7 @@ const Dashboard = ({
                   </div>
                 </div>
                 <div className="boxes with-border">
-                  <div className="main box half-less">
-                    <UsageData
-                      kindOfUsage="car"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="data"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="data"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="heat"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="water"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="data"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="data"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                    <UsageData
-                      kindOfUsage="data"
-                      usedAmount={90}
-                      carbonEmit={120}
-                    />
-                  </div>
+                  <div className="main box half-less"></div>
                   <div className="boxes column">
                     <div className="bottom box">
                       <span>
