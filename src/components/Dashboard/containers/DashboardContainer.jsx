@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Dashboard from "../Dashboard";
+import { addSerial, showInfo } from "components/AxiosAPI/boardAPI";
 
 const DashboardContainer = () => {
   const history = useHistory();
@@ -23,12 +24,13 @@ const DashboardContainer = () => {
     ]);
   };
   const handleSerialSubmit = () => {
-    console.log(serialList);
+    addSerial(serialList);
   };
   useEffect(() => {
     if (!window.sessionStorage.getItem("idToken")) {
       history.push("/");
     }
+    showInfo();
   });
   return (
     <Dashboard
