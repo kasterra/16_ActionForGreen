@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
@@ -6,40 +6,44 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import logo from 'assets/logo.png';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import loginAPI from 'components/AxiosAPI/loginAPI';
-const signup = () =>
-{
-    return( 
-    <React.Fragment>
-        
-    <HeaderImg />
-    <Maindiv>
-        
-        <TextField variant="outlined" label="ID" sx={{mt: 2, mb:2}}/>
-        <TextField variant="outlined" label="비밀번호" type="password" sx={{mt:2, mb:2}}/>
-        
-        <FormGroup>
-            <FormControlLabel control={<Checkbox />} label="ID 저장하기" />
-        </FormGroup>
-        <Button variant="contained" sx={{mt:10}} onClick={()=> {
-            if(loginAPI({"email":"IDabd@abc.com", "password": "adde(**&333"})===false)
-            {
-                alert("로그인");
-            }
-            else
-            {
-                alert("실패");
-            }
-            
-        }}>로그인</Button>
 
-        <ResetPwdLbl><StyledLink to="./findpw">비밀번호 재설정</StyledLink></ResetPwdLbl>
-    <SignUpLbl><StyledLink to="./signup">회원가입</StyledLink></SignUpLbl>
-    </Maindiv>
-    
-    <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
-    </React.Fragment>
+
+const login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    return (
+        <React.Fragment>
+
+            <HeaderImg />
+            <Maindiv>
+
+                <TextField variant="outlined" label="ID" sx={{ mt: 2, mb: 2 }} value={email} onChange={e => { const { value } = e.target; setEmail(value) }} />
+                <TextField variant="outlined" label="비밀번호" type="password" sx={{ mt: 2, mb: 2 }} value={password} onChange={e => { const { value } = e.target; setPassword(value) }} />
+
+                <FormGroup>
+                    <FormControlLabel control={<Checkbox />} label="ID 저장하기" />
+                </FormGroup>
+                <Button variant="contained" sx={{ mt: 10 }} onClick={() => {
+                    localStorage.setItem("savedID", "test");
+
+                    if (loginAPI({ "email": email, "password": password }) === false) {
+                        alert("로그인");
+                    }
+                    else {
+                        alert("실패");
+                    }
+
+                }}>로그인</Button>
+
+                <ResetPwdLbl><StyledLink to="./findpw">비밀번호 재설정</StyledLink></ResetPwdLbl>
+                <SignUpLbl><StyledLink to="./signup">회원가입</StyledLink></SignUpLbl>
+            </Maindiv>
+
+            <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
+        </React.Fragment>
     );
 }
 const HeaderImg = styled.img.attrs({
@@ -110,4 +114,4 @@ const StyledLink = styled(Link)`
 `;
 
 
-export default signup;
+export default login;

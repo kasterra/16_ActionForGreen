@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
@@ -16,40 +16,42 @@ const handelChange =  (event) => {
     setValues({...values, [name]:value});
 }
 */
-const signup = () =>
-{
-    return( 
-    <React.Fragment>
-        <Icondiv>
-        
-        <img src={LCIcon} align="center" />
-</Icondiv>
-        <Caption>회원 가입</Caption>
-    <Maindiv>
-        <TextField variant="outlined" label="ID" sx={{mt: 2, mb:2}} />
-        <TextField variant="outlined" label="비밀번호" type="password" sx={{mt:2, mb:2}} />
-        <TextField variant="outlined" label="Email" type="email" sx={{mt:2, mb:2}}/>
-        <TextField variant="outlined" label="IoT Serial" sx={{mt:2, mb:2}} />
-        
-        <Button variant="contained" onClick={() => {
-            if(signupAPI({"email":"IDabc@abc.com", "password":"adde(**&333"})===false)
-            {
-                alert("회원가입에 성공하였습니다. 로그인해 주세요.");
-                //location.href="./login";                
-            }
-            else{
-                alert("회원가입에 실패하였습니다.");
-                
-            }
-            
-            }} >회원 가입</Button>
+const signup = () => {
+    const [id, setId] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [iotserial, setIotSerial] = useState("");
+    return (
+        <React.Fragment>
+            <Icondiv>
 
-        
-    </Maindiv>
-    
-    <Ldiv>이미 계정이 있으신가요? 로그인하러 가기</Ldiv>
-    <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
-    </React.Fragment>
+                <img src={LCIcon} align="center" />
+            </Icondiv>
+            <Caption>회원 가입</Caption>
+            <Maindiv>
+                <TextField variant="outlined" label="ID" sx={{ mt: 2, mb: 2 }} value={id} onChange={e => { const { value } = e.target; setId(value) }} />
+                <TextField variant="outlined" label="비밀번호" type="password" sx={{ mt: 2, mb: 2 }} value={password} onChange={e => { const { value } = e.target; setPassword(value) }} />
+                <TextField variant="outlined" label="Email" type="email" sx={{ mt: 2, mb: 2 }} value={email} onChange={e => { const { value } = e.target; setEmail(value) }} />
+                <TextField variant="outlined" label="IoT Serial" sx={{ mt: 2, mb: 2 }} value={iotserial} onChange={e => { const { value } = e.target; setIotSerial(value) }} />
+                {console.log(id, password, email, iotserial)}
+                <Button variant="contained" onClick={() => {
+                    if (signupAPI({ "email": email, "password": password }) === false) {
+                        alert("회원가입에 성공하였습니다. 로그인해 주세요.");
+                        location.href = "./login";
+                    }
+                    else {
+                        alert("회원가입에 실패하였습니다.");
+
+                    }
+
+                }} >회원 가입</Button>
+
+
+            </Maindiv>
+
+            <Ldiv>이미 계정이 있으신가요? 로그인하러 가기</Ldiv>
+            <Copyright>Copyright @ GDSC Hackathon Team</Copyright>
+        </React.Fragment>
     );
 }
 

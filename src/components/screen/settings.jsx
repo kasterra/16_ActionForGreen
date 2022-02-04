@@ -5,6 +5,12 @@ import Switch from '@mui/material/Switch';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
+
+
+
+
+
+
 const signup = () =>
 {
     return( 
@@ -24,6 +30,7 @@ const signup = () =>
         <Button variant="outlined" sx={{mt: 10, ml:10}}> 취소</Button>
         </StyledLink>
         </Buttonwrap>
+       
     </Maindiv>
     
     
@@ -68,6 +75,7 @@ justify-content: center;
 font-size:small;
 color: rgba(0,0,0,0.54);
 `
+
 const MailOn = styled.div`
 background-color: #F7E600;
 border-radius: 4px;
@@ -77,6 +85,7 @@ padding: 7px;
 box-shadow: 3px 3px 3px grey;
 font-family: 'Roboto';
 `
+
 const Buttonwrap = styled.div`
 float: center;
 text-align: center;
