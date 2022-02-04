@@ -3,6 +3,51 @@
           box-sizing: content-box;
 }
 
+.input-component {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.input-component .serial-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input-component .serial-buttons .button {
+  margin-left: 10px;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 15px;
+}
+
+.input-component .serial-buttons .plus {
+  background-color: #f44336;
+}
+
+.input-component .serial-buttons .minus {
+  background-color: #2196f3;
+}
+
+.input-component .serial-buttons .submit {
+  background-color: #2196f3;
+}
+
 .dashboard {
   background-color: rgba(226, 226, 226, 0.2);
   width: 100%;
@@ -34,10 +79,13 @@
 .dashboard .app-bar .app-bar-title {
   padding-left: 50px;
   font-size: 35px;
-  margin-right: 50px;
 }
 
-.dashboard .app-bar button {
+.dashboard .app-bar .buttons {
+  margin-left: 20px;
+}
+
+.dashboard .app-bar .buttons button {
   outline: none;
   border: none;
   margin-right: 30px;
@@ -47,7 +95,7 @@
   font-size: 28px;
 }
 
-.dashboard .app-bar button:hover {
+.dashboard .app-bar .buttons button:hover {
   cursor: pointer;
 }
 
@@ -143,6 +191,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .dashboard .inner .section .boxes.column {

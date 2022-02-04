@@ -4,22 +4,43 @@ import car from "assets/car.svg";
 import data from "assets/data.svg";
 import hotTub from "assets/hot-tub.svg";
 import powerPlug from "assets/power-plug.svg";
-import water from "assets/water.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaucet } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
 const UsageData = ({ kindOfUsage, usedAmount, carbonEmit }) => {
   const iconSetter = () => {
     switch (kindOfUsage) {
       case "car":
-        return car;
+        return (
+          <div className="main-icon">
+            <img src={car} alt="icon" />
+          </div>
+        );
       case "data":
-        return data;
+        return (
+          <div className="main-icon">
+            <img src={data} alt="icon" />
+          </div>
+        );
       case "heat":
-        return hotTub;
+        return (
+          <div className="main-icon">
+            <img src={hotTub} alt="icon" />
+          </div>
+        );
       case "elect":
-        return powerPlug;
+        return (
+          <div className="main-icon">
+            <img src={powerPlug} alt="icon" />
+          </div>
+        );
       case "water":
-        return water;
+        return (
+          <div className="main-icon">
+            <FontAwesomeIcon icon={faFaucet} size="2x" />
+          </div>
+        );
       default:
         break;
     }
@@ -62,9 +83,7 @@ const UsageData = ({ kindOfUsage, usedAmount, carbonEmit }) => {
   };
   return (
     <div className="usage">
-      <div className="main-icon">
-        <img src={iconSetter()} alt="icon" />
-      </div>
+      {iconSetter()}
       <span className="usage-title">{titleSetter()}</span>
       <div className="usage-detail">{usageFormatter()}</div>
       <div className="arrow-container">

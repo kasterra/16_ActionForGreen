@@ -1,18 +1,36 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import plus from "assets/add.svg";
+import minus from "assets/minus.svg";
 import update from "assets/update.svg";
 import settings from "assets/settings.svg";
 import bell from "assets/bell.svg";
 import UsageData from "./components/UsageData";
 import Checkbox from "@mui/material/Checkbox";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
 import dew from "assets/dew.jpg";
 import "./css/index.css";
 import { Link } from "react-router-dom";
 import AlertLog from "./components/AlertLog";
 import Footer from "components/Footer/Footer";
 
-// eslint-disable-next-line react/prop-types
-const Dashboard = ({ yourCarbon, averageCarbon }) => {
+const Dashboard = ({
+  yourCarbon,
+  averageCarbon,
+  serialList,
+  pushSerial,
+  deleteSerial,
+  editSerial,
+  handleSerialSubmit
+}) => {
   const [currentMenu, setCurrentMenu] = useState(0);
+  const [isSerialDialogOpen, setIsSerialDialogOpen] = useState(false);
   const repeatTree = num => {
     let trees = "";
     for (let i = 0; i < num; ++i) {
@@ -20,6 +38,9 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
     }
     return trees;
   };
+  const openDialog = () => setIsSerialDialogOpen(true);
+  const closeDialog = () => setIsSerialDialogOpen(false);
+
   return (
     <div className="dashboard">
       <div className="app-bar">
@@ -27,8 +48,46 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
         <div className="buttons">
           <button onClick={() => setCurrentMenu(0)}>사용량 보기</button>
           <button onClick={() => setCurrentMenu(1)}>알림 설정</button>
+          <button onClick={openDialog}>IoT 시리얼 추가</button>
         </div>
       </div>
+      <Dialog
+        open={isSerialDialogOpen}
+        onClose={closeDialog}
+        scroll="paper"
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>IoT 시리얼 추가</DialogTitle>
+        <DialogContent>
+          {serialList.map((item, idx) => (
+            <div className="input-component" key={idx}>
+              <TextField
+                id="outlined-name"
+                label="IoT 시리얼"
+                value={serialList[idx]}
+                onChange={e => editSerial(idx, e.target.value)}
+              />
+              <div className="serial-buttons">
+                <div className="plus button" onClick={() => pushSerial()}>
+                  <img src={plus} alt="plus icon" />
+                </div>
+                {serialList.length !== 1 && (
+                  <div
+                    className="minus button"
+                    onClick={e => deleteSerial(idx)}
+                  >
+                    <img src={minus} alt="minus icon" />
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleSerialSubmit}>제출</Button>
+        </DialogActions>
+      </Dialog>
       <div
         style={{
           width: "100vw",
@@ -44,7 +103,7 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
       <div className="inner">
         {yourCarbon !== null ? (
           <>
-            {currentMenu === 0 ? (
+            {currentMenu === 0 && (
               <div className="section">
                 <div className="title box blue-1">
                   <div className="text-container">
@@ -154,10 +213,10 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                     </div>
                   </div>
                 </div>
-
                 <Footer />
               </div>
-            ) : (
+            )}
+            {currentMenu == 1 && (
               <div className="section">
                 <div className="boxes">
                   <div className="box title blue-2 half-less">
@@ -181,11 +240,11 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                   <div className="main box half-less">
                     <div className="check-item">
                       <Checkbox size="large" />
-                      <span>매일 7시에 전날 탄소배출량 알림 받기</span>
+                      <span>매일 7시에 탄소배출 통계 알림 받기</span>
                     </div>
                     <div className="check-item">
                       <Checkbox size="large" />
-                      <span>평균 1인가구 탄소배출량 75% 초과시 알림</span>
+                      <span>전월 대비 100% </span>
                     </div>
                     <div className="check-item">
                       <Checkbox size="large" />
@@ -197,7 +256,7 @@ const Dashboard = ({ yourCarbon, averageCarbon }) => {
                     </div>
                     <div className="check-item">
                       <Checkbox size="large" />
-                      <span>사용자 설정 : </span>{" "}
+                      <span>사용자 설정 : </span>
                       <input className="user-input" type="text" />
                       <span> kg</span>
                       <button className="save">저장</button>
