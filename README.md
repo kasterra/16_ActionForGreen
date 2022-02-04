@@ -31,7 +31,7 @@ yarn start
 
 Back-end(Server, Firebase)
 
-## Author
+## :smile:Author
 
 👤 **ActionForGreen Team GDSC Hackathon**
 > ActionForGreen은 네 명으로 구성된 팀으로 기후변화 대응을 위한 적극적인 Action!이 필요하다는 취지에서 ActionForGreen이라는 이름으로 정했습니다. 네 명이 모여서 코딩을 하던 중 구현이 생각보다 잘 되지 않거나 오류가 발생하는 부분이 많아 힘들었지만 끝까지 붙어서 무지성(?)으로 해결하기도 했답니다~!
