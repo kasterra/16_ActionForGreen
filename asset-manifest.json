@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/16_actionforgreen/static/css/main.dd0aa1ea.css",
+    "main.js": "/16_actionforgreen/static/js/main.e3d56cdb.js",
+    "static/media/dew.jpg": "/16_actionforgreen/static/media/dew.04d14d6a693ab4393875.jpg",
+    "static/media/logo.png": "/16_actionforgreen/static/media/logo.4706b098247cc2d3a2ec.png",
+    "static/media/hot-tub.svg": "/16_actionforgreen/static/media/hot-tub.6cccab066132a5cd6fa6e69a2fdbd397.svg",
+    "static/media/settings.svg": "/16_actionforgreen/static/media/settings.465aeb35debba783526e9b1ee9c2a4f5.svg",
+    "static/media/bell.svg": "/16_actionforgreen/static/media/bell.138e76cc9cd72feccb3fc9360023a44b.svg",
+    "static/media/car.svg": "/16_actionforgreen/static/media/car.170f014ef9abd52e66203b6c82cac34d.svg",
+    "index.html": "/16_actionforgreen/index.html",
+    "static/media/update.svg": "/16_actionforgreen/static/media/update.33ccdfb86a2fef2aa5ca2913588f5d66.svg",
+    "static/media/icon.svg": "/16_actionforgreen/static/media/icon.f6a01921a93fd9ef164065cfe4c5f579.svg",
+    "static/media/arrow-forward.svg": "/16_actionforgreen/static/media/arrow-forward.9e073b7a9834cbde3b863b3e559ec50b.svg",
+    "static/media/data.svg": "/16_actionforgreen/static/media/data.e27751a43b7c128e9f4fa823dd285f97.svg",
+    "static/media/power-plug.svg": "/16_actionforgreen/static/media/power-plug.9e05e58eafe1663a4a3ca0954979e631.svg",
+    "static/media/add.svg": "/16_actionforgreen/static/media/add.888966b9da2c21d13169fb54df08fc5d.svg",
+    "static/media/minus.svg": "/16_actionforgreen/static/media/minus.f45ce5a85de5364b6cc7e7657e98d806.svg",
+    "main.dd0aa1ea.css.map": "/16_actionforgreen/static/css/main.dd0aa1ea.css.map",
+    "main.e3d56cdb.js.map": "/16_actionforgreen/static/js/main.e3d56cdb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd0aa1ea.css",
+    "static/js/main.e3d56cdb.js"
+  ]
+}
