@@ -1,11 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Dashboard from "../Dashboard";
-import { addSerial, showInfo } from "components/AxiosAPI/boardAPI";
+import { addSerial, getStat, showInfo } from "components/AxiosAPI/boardAPI";
 
 const DashboardContainer = () => {
   const history = useHistory();
   const [serialList, setSerialList] = useState([""]);
+  let serials;
+  const [total, setTotal] = useState(0);
+  let [usageList, setUsageList] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+  let [carbonDataList, setCarbonDataList] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
   const editSerial = (idx, serial) =>
     setSerialList(prev => [
       ...prev.slice(0, idx),
@@ -26,21 +31,45 @@ const DashboardContainer = () => {
   const handleSerialSubmit = () => {
     addSerial(serialList);
   };
+  const fetchData = async () => {
+    serials = await showInfo();
+    console.log("serials", serials);
+    serials.map(async item => {
+      const { type, statData, statCarbon } = await getStat(item);
+      console.log("fetchData", type, statData, statCarbon);
+      usageList[type] = statData;
+      carbonDataList[type] = statCarbon;
+      setUsageList(prev => [
+        ...prev.slice(0, type),
+        statData,
+        ...prev.slice(type, prev.length - 1)
+      ]);
+      setCarbonDataList(prev => [
+        ...prev.slice(0, type),
+        statCarbon,
+        ...prev.slice(type, prev.length - 1)
+      ]);
+    });
+    carbonDataList.map(data => {
+      setTotal(prev => (prev += data));
+    });
+  };
   useEffect(() => {
     if (!window.sessionStorage.getItem("idToken")) {
       history.push("/");
     }
-    showInfo();
-  });
+    fetchData();
+  }, []);
   return (
     <Dashboard
-      yourCarbon={100}
-      averageCarbon={2000}
+      yourCarbon={total / 1000}
       serialList={serialList}
       editSerial={editSerial}
       pushSerial={pushSerial}
       deleteSerial={deleteSerial}
       handleSerialSubmit={handleSerialSubmit}
+      usageList={usageList}
+      carbonDataList={carbonDataList}
     />
   );
 };

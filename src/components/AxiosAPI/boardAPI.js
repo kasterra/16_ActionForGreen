@@ -29,8 +29,8 @@ export async function showInfo() {
       }
     );
     console.log(response);
-    if (response.status === 200) return true;
-    else return false;
+    if (response.status === 200) return response.data.serial;
+    else return null;
   } catch (e) {
     return false;
   }
@@ -64,7 +64,7 @@ export async function getStat(serial) {
         }
       }
     );
-    console.log("getStat : ", response);
+    return response.data;
   } catch (e) {
     return null;
   }

@@ -20,15 +20,49 @@ import "./css/index.css";
 import { Link } from "react-router-dom";
 import AlertLog from "./components/AlertLog";
 import Footer from "components/Footer/Footer";
+import ReactApexChart from "react-apexcharts";
+
+const chartOption = {
+  chart: {
+    width: 380,
+    type: "pie"
+  },
+  labels: [
+    "전기",
+    "도시가스",
+    "자동차",
+    "데이터",
+    "일회용품",
+    "음식물",
+    "수도"
+  ],
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 500
+        },
+        legend: {
+          position: "bottom"
+        }
+      }
+    }
+  ]
+};
 
 const Dashboard = ({
   yourCarbon,
   averageCarbon,
   serialList,
+  carbonDataList,
+  usageList,
   pushSerial,
   deleteSerial,
   editSerial,
-  handleSerialSubmit
+  handleSerialSubmit,
+  isLoaded,
+  serials
 }) => {
   const history = useHistory();
   const [currentMenu, setCurrentMenu] = useState(0);
@@ -49,7 +83,6 @@ const Dashboard = ({
         <div className="app-bar-title">App Dashboard</div>
         <div className="buttons">
           <button onClick={() => setCurrentMenu(0)}>사용량 보기</button>
-          <button onClick={() => setCurrentMenu(1)}>알림 설정</button>
           <button onClick={openDialog}>IoT 시리얼 추가</button>
           <button
             onClick={() => {
@@ -118,123 +151,31 @@ const Dashboard = ({
                 <div className="title box blue-1">
                   <div className="text-container">
                     <div className="text">
-                      <span>
-                        <span className="large">
-                          탄소배출량 : {yourCarbon}kg /
-                        </span>{" "}
-                        1인가구 평균 {averageCarbon}kg
-                      </span>
-                    </div>
-                    <div className="text">
-                      <span className="small">
-                        서비스 이용자 석차 : 20 / 100
-                      </span>
-                    </div>
-                    <div className="text">
-                      <span>상위 몇%달성</span>
+                      <span className="large">탄소배출량 : {yourCarbon}kg</span>{" "}
                     </div>
                   </div>
                 </div>
                 <div className="boxes with-border">
-                  <div className="main box half-less"></div>
+                  <div className="main box half-less">
+                    {console.log(usageList)}
+                    {[...new Array(7)].map((_, idx) => (
+                      <UsageData
+                        key={idx}
+                        kindOfUsage={idx + 1}
+                        usedAmount={usageList[idx + 1]}
+                        carbonEmit={carbonDataList[idx + 1]}
+                      />
+                    ))}
+                  </div>
                   <div className="boxes column">
-                    <div className="bottom box">
-                      <span>
-                        Username님의 총 탄소 배출량은 {yourCarbon}kg로,
-                      </span>
-                      <span>
-                        평균 배출량 {averageCarbon}kg 대비,{" "}
-                        {Math.abs(averageCarbon - yourCarbon)}kg 만큼{" "}
-                        {averageCarbon > yourCarbon ? "덜" : "더"}{" "}
-                        배출하셨습니다
-                      </span>
-                      {averageCarbon > yourCarbon ? (
-                        <span>
-                          소나무 {((averageCarbon - yourCarbon) / 10000) * 71}
-                          그루를 더 심으신 효과를 내셨습니다. 👍
-                        </span>
-                      ) : (
-                        <span>
-                          소나무 {((yourCarbon - averageCarbon) / 10000) * 71}
-                          그루가 더 필요하겠네요 ㅠㅠ 😥
-                        </span>
-                      )}
+                    <div className="chart-box">
+                      <ReactApexChart
+                        type="pie"
+                        options={chartOption}
+                        series={carbonDataList}
+                        width={500}
+                      />
                     </div>
-                    <div className="box tree-box bottom">
-                      <span className="box-title">내가 심은 나무!</span>
-                      {averageCarbon > yourCarbon ? (
-                        <>
-                          <div className="trees">
-                            {repeatTree(
-                              ((averageCarbon - yourCarbon) / 10000) * 71
-                            )}
-                          </div>
-                          <span className="tree-description">
-                            소나무 {((averageCarbon - yourCarbon) / 10000) * 71}
-                            그루
-                          </span>
-                        </>
-                      ) : (
-                        <span className="tree-description">
-                          탄소량을 줄여서 나무를 심어주세요 ㅠㅠ
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <Footer />
-              </div>
-            )}
-            {currentMenu == 1 && (
-              <div className="section">
-                <div className="boxes">
-                  <div className="box title blue-2 half-less">
-                    <div className="noti-wrapper">
-                      <div className="icon-wrapper box">
-                        <img src={bell} alt="bell icon" />
-                      </div>
-                      <span className="huge">알림 설정</span>
-                    </div>
-                  </div>
-                  <div className="box title blue-2 half-less">
-                    <div className="noti-wrapper">
-                      <div className="icon-wrapper box">
-                        <img src={update} alt="update icon" />
-                      </div>
-                      <span className="huge">알림 로그</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="boxes">
-                  <div className="main box half-less">
-                    <div className="check-item">
-                      <Checkbox size="large" />
-                      <span>매일 7시에 탄소배출 통계 알림 받기</span>
-                    </div>
-                    <div className="check-item">
-                      <Checkbox size="large" />
-                      <span>전월 대비 100% </span>
-                    </div>
-                    <div className="check-item">
-                      <Checkbox size="large" />
-                      <span>평균 1인가구 탄소배출량 90% 초과시 알림</span>
-                    </div>
-                    <div className="check-item">
-                      <Checkbox size="large" />
-                      <span>평균 1인가구 탄소배출량 100% 초과시 알림</span>
-                    </div>
-                    <div className="check-item">
-                      <Checkbox size="large" />
-                      <span>사용자 설정 : </span>
-                      <input className="user-input" type="text" />
-                      <span> kg</span>
-                      <button className="save">저장</button>
-                    </div>
-                  </div>
-                  <div className="main box half-less">
-                    <AlertLog date="2021-01-01" content="목표량 50% 초과" />
-                    <AlertLog date="2021-01-01" content="목표량 50% 초과" />
-                    <AlertLog date="2021-01-01" content="목표량 50% 초과" />
                   </div>
                 </div>
                 <Footer />

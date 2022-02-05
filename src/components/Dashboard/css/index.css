@@ -205,8 +205,15 @@
           justify-content: flex-start;
 }
 
-.dashboard .inner .section .boxes.column div:first-child {
-  margin-bottom: 100px;
+.dashboard .inner .section .boxes .chart-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 500px;
+  height: 367px;
 }
 
 .dashboard .inner .section .half {
@@ -226,7 +233,7 @@
 }
 
 .dashboard .inner .section .title {
-  margin-top: 45px;
+  margin-top: 0px;
   padding: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -234,7 +241,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 180px;
+  height: 90px;
   margin-bottom: 20px;
 }
 
