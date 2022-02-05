@@ -34,6 +34,7 @@ const DashboardContainer = () => {
   const fetchData = async () => {
     serials = await showInfo();
     console.log("serials", serials);
+    setSerialList(serials);
     serials.map(async item => {
       const { type, statData, statCarbon } = await getStat(item);
       console.log("fetchData", type, statData, statCarbon);
