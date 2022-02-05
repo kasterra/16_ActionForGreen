@@ -148,13 +148,6 @@ const Dashboard = ({
           <>
             {currentMenu === 0 && (
               <div className="section">
-                <div className="title box blue-1">
-                  <div className="text-container">
-                    <div className="text">
-                      <span className="large">탄소배출량 : {yourCarbon}kg</span>{" "}
-                    </div>
-                  </div>
-                </div>
                 <div className="boxes with-border">
                   <div className="main box half-less">
                     {console.log(usageList)}
@@ -172,7 +165,9 @@ const Dashboard = ({
                       <ReactApexChart
                         type="pie"
                         options={chartOption}
-                        series={carbonDataList}
+                        series={[
+                          ...carbonDataList.slice(1, carbonDataList.length)
+                        ]}
                         width={500}
                       />
                     </div>

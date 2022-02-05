@@ -31,10 +31,9 @@ function signupAPI(props) {
     .then(function (response) {
       console.log(response);
       if (response.status === 200) {
-        window.alert("성공");
         hasLoginFailed = false;
         return;
-      } else window.alert("fail");
+      }
     })
     .catch(function (error) {
       console.log(error);
