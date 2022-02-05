@@ -59,6 +59,7 @@ const signup = () => {
               alert("회원가입에 성공하였습니다. 로그인해 주세요.");
               location.href = "./login";
             }
+            location.href = "/";
           }}
         >
           회원 가입
