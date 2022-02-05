@@ -54,8 +54,10 @@ const signup = () => {
         {console.log(password, email)}
         <Button
           variant="contained"
-          onClick={() => {
-            if (signupAPI({ email: email, password: password }) === false) {
+          onClick={async () => {
+            if (
+              (await signupAPI({ email: email, password: password })) === false
+            ) {
               alert("회원가입에 성공하였습니다. 로그인해 주세요.");
               location.href = "./login";
             }

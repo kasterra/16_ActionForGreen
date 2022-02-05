@@ -9,10 +9,9 @@ const json = JSON.stringify({
 });
 */
 
-function signupAPI(props) {
+async function signupAPI(props) {
   let email = props.email;
   let password = props.password;
-  let hasLoginFailed = true;
 
   let json = JSON.stringify({
     email: email,
@@ -22,25 +21,13 @@ function signupAPI(props) {
 
   console.log(json);
 
-  axios
-    .post(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAr7uawUtRkM5YzG7w1W3nI96SYluf0gXQ",
-      json,
-      { headers: { "Content-Type": "application/json" } }
-    )
-    .then(function (response) {
-      console.log(response);
-      if (response.status === 200) {
-        hasLoginFailed = false;
-        return;
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-      return true;
-    });
-
-  return hasLoginFailed;
+  const response = await axios.post(
+    "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAr7uawUtRkM5YzG7w1W3nI96SYluf0gXQ",
+    json,
+    { headers: { "Content-Type": "application/json" } }
+  );
+  if (response.status === 200) return false;
+  else return true;
 }
 
 export default signupAPI;
