@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import AlertLog from "./components/AlertLog";
 import Footer from "components/Footer/Footer";
 import ReactApexChart from "react-apexcharts";
+import { getAlert } from "components/AxiosAPI/boardAPI";
 
 const chartOption = {
   chart: {
@@ -144,7 +145,7 @@ const Dashboard = ({
         />
       </div>
       <div className="inner">
-        {yourCarbon !== null ? (
+        {yourCarbon[0] !== "" ? (
           <>
             {currentMenu === 0 && (
               <div className="section">
@@ -172,6 +173,12 @@ const Dashboard = ({
                       />
                     </div>
                   </div>
+                </div>
+                <div className="bottom-areas">
+                  {" "}
+                  <button className="more" onClick={getAlert}>
+                    이메일로 더 많은 정보 받기
+                  </button>
                 </div>
                 <Footer />
               </div>

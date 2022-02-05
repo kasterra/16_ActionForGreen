@@ -436,6 +436,30 @@
       align-self: center;
 }
 
+.dashboard .bottom-areas {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dashboard .bottom-areas .more {
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: #2196f3;
+  color: #fff;
+  width: 300px;
+  height: 50px;
+  font-size: 17pt;
+}
+
+.dashboard .bottom-areas .more:hover {
+  cursor: pointer;
+}
+
 .dashboard .usage {
   display: -webkit-box;
   display: -ms-flexbox;
